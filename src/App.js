@@ -115,7 +115,7 @@ function App({ yearNow, state, setState }) {
               </div>
               </div>
               <div className='objective-predictions'>
-                <h2>Po {state.years} letech</h2>
+                <h2>Po {state.years} letech:</h2>
                   <div>
                     <strong>Našetříte:</strong><br/>
                     {formatter.format(future.values[future.values.length - 1] || 0)}
