@@ -137,7 +137,8 @@ function App({ yearNow, state, setState }) {
         <div style={{ height: 550, width: '100%' }}>
         <ResponsiveLine
           data={data}
-          margin={{ top: 50, right: 110, bottom: 50, left: 80 }}
+          yFormat={v => formatter.format(v)}
+          margin={{ top: 50, right: 100, bottom: 50, left: 85 }}
           xScale={{ type: 'point' }}
           yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
           axisBottom={{
@@ -150,12 +151,12 @@ function App({ yearNow, state, setState }) {
             legendPosition: 'middle'
           }}
           axisLeft={{
+            format: (e) => formatter.format(e),
             orient: 'left',
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Našetřeno',
-            legendOffset: -65,
+            legendOffset: -85,
             legendPosition: 'middle'
           }}
           colors={{ scheme: 'set1' }}
@@ -163,7 +164,8 @@ function App({ yearNow, state, setState }) {
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
           pointBorderColor={{ from: 'serieColor' }}
-          pointLabel='y'
+          enablePointLabel
+          pointLabel={e => formatter.format(e.y)}
           pointLabelYOffset={-12}
           useMesh={true}
           legends={[{
