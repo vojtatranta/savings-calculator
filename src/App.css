@@ -1,5 +1,37 @@
-.App {
-  text-align: center;
+.app {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.is-flexbox {
+  display: flex;
+}
+
+.has-flex {
+  flex: 1;
+}
+
+.objectives {
+  margin-top: 20px;
+}
+
+.chart {
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.calculator {
+  max-width: 200px;
+}
+
+.has-column-direction {
+  flex-direction: column;
+}
+
+.has-row-direction {
+  flex-direction: row;
 }
 
 .App-logo {
