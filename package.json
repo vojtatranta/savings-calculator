@@ -1,6 +1,7 @@
 {
   "name": "savings",
   "version": "0.1.0",
+  "homepage": "https://vojtatranta.github.io/savings-calculator/build/",
   "private": true,
   "dependencies": {
     "@nivo/bump": "^0.61.1",
