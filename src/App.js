@@ -23,7 +23,13 @@ const calculateFutureValue = (principal, interest, monthlySaving, years) => {
 
 function App({ yearNow, state, setState }) {
   const formatter = Intl.NumberFormat('cs-CZ', {  style: 'currency', currency: 'CZK'})
-  const future = calculateFutureValue(state.saved, state.interest, state.monthlySavings, state.years || 0)
+  const future = calculateFutureValue(state.saved, state.interest, state.monthlySavings, state.years)
+
+  const inHundredYears = calculateFutureValue(state.saved, state.interest, state.monthlySavings, 500).values
+    .map((value, index) => ({
+      x: yearNow + index,
+      y: value,
+    }))
 
   const normalizedFuture = future.values
     .map((value, index) => ({
@@ -88,6 +94,7 @@ function App({ yearNow, state, setState }) {
             </label>
           </div>
           <div className='objectives'>
+              <div className='future-objectives'>
             <div className='form-row'>
               <label><span className='actual-label'>Kolik chcete našetřit:</span><br/>
                 <NumberField
@@ -99,16 +106,18 @@ function App({ yearNow, state, setState }) {
                   }))}
                 />
               </label>
+              <div>
+                <strong>Našetříte v roce:</strong><br/>
+                {
+                  inHundredYears.find(desc => desc.y >= state.target)?.x ||
+                  'Nenašetříte, zvyšte si úrok úspory nebo dobu šetření'
+                }
+              </div>
+              </div>
               <div className='objective-predictions'>
+                <h2>Po {state.years} letech</h2>
                   <div>
-                    <strong>Našetříte v roce:</strong><br/>
-                    {
-                      normalizedFuture.find(desc => desc.y >= state.target)?.x ||
-                      'Nenašetříte, zvyšte si úrok úspory nebo dobu šetření'
-                    }
-                  </div>
-                  <div>
-                    <strong>Našetřená částka:</strong><br/>
+                    <strong>Našetříte:</strong><br/>
                     {formatter.format(future.values[future.values.length - 1] || 0)}
                   </div>
                   <div>
@@ -125,7 +134,7 @@ function App({ yearNow, state, setState }) {
         </div>
       </div>
       <div className='chart has-flex'>
-        <div style={{ height: 500, width: '100%' }}>
+        <div style={{ height: 550, width: '100%' }}>
         <ResponsiveLine
           data={data}
           margin={{ top: 50, right: 110, bottom: 50, left: 80 }}
