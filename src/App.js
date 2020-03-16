@@ -138,7 +138,7 @@ function App({ yearNow, state, setState }) {
         <ResponsiveLine
           data={data}
           yFormat={v => formatter.format(v)}
-          margin={{ top: 50, right: 100, bottom: 50, left: 85 }}
+          margin={{ top: 50, right: 100, bottom: 50, left: 110 }}
           xScale={{ type: 'point' }}
           yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
           axisBottom={{
